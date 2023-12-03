@@ -16,6 +16,15 @@ extension ListExtensions<T> on List<T> {
   }
 }
 
+extension IterableNumExtension on Iterable<num> {
+  num sum() => fold(0, (a, b) => a + b);
+  num max() => fold(0, (a, b) => a > b ? a : b);
+}
+
+extension IterableListExtension<T> on Iterable<List<T>> {
+  Iterable<T> merge() => fold([], (a, b) => b..addAll(a));
+}
+
 void printTimedWithHeader<T>(T Function() fn, String header) {
   final start = DateTime.now();
   final res = fn();
